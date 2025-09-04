@@ -7,11 +7,6 @@ import cute.neko.kawakaze.config.gson.strategy.ExcludeStrategy
 import net.minecraft.Minecraft
 import java.io.File
 
-/**
- * @author yuchenxue
- * @date 2025/09/03
- */
-
 object ConfigSystem {
 
     internal val CONFIG_FOLD = File(

@@ -5,18 +5,17 @@ import cute.neko.kawakaze.config.ConfigSystem.gson
 import cute.neko.kawakaze.config.setting.Setting
 import cute.neko.kawakaze.config.setting.types.BooleanSetting
 import cute.neko.kawakaze.config.setting.types.FloatSetting
-import cute.neko.kawakaze.config.setting.types.ModeSettings
+import cute.neko.kawakaze.config.setting.types.ModeSetting
 import java.io.FileWriter
 
 /**
- * @author yuchenxue
- * @date 2025/09/03
+ * A config for a mod,
+ * you should use [cute.neko.kawakaze.KawakazeLib.task] to add a register task.
+ *
+ * @param name The name the config.
+ * @param id The mod id.
  */
 
-/**
- * @param name config name
- * @param id the mod-id
- */
 open class Config(
     val name: String,
     id: String = ""
@@ -35,7 +34,7 @@ open class Config(
 
     internal val settings = mutableListOf<Setting<*>>()
 
-    fun load() {
+    internal fun load() {
         if (!jsonFile.exists()) {
             return
         }
@@ -48,7 +47,7 @@ open class Config(
         }
     }
 
-    fun save() {
+    internal fun save() {
         try {
             val json = gson.toJson(this, Config::class.java)
 
@@ -60,7 +59,7 @@ open class Config(
         }
     }
 
-    fun deserializer(json: JsonElement) {
+    internal fun deserializer(json: JsonElement) {
         val settings = json.asJsonObject.get("settings").asJsonArray
             .map { element -> element.asJsonObject }
             .associateBy { s -> s["name"].asString }
@@ -90,5 +89,5 @@ open class Config(
 
     protected fun setting(
         name: String, modes: Array<String>, value: String
-    ) = register(ModeSettings(name, modes, value))
+    ) = register(ModeSetting(name, modes, value))
 }

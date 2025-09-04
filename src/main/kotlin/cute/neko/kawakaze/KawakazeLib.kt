@@ -17,14 +17,15 @@ object KawakazeLib : ModInitializer {
     private val tasks = mutableListOf<(ConfigRegistrar) -> Unit>()
 
     /**
-     * Add a task before load config
+     * Add a task before the config be loaded.
+     *
+     * @param task A lambda that takes a [ConfigRegistrar] and performs the registration.
      */
     fun task(task: (registrar: ConfigRegistrar) -> Unit) {
         tasks.add(task)
     }
 
     fun start() {
-
         val register = ConfigRegistrar()
 
         tasks.forEach {

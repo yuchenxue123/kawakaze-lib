@@ -37,11 +37,8 @@ abstract class Setting<T>(
         return value
     }
 
-    /**
-     * This is not api, don't call it.
-     */
     @Suppress("UNCHECK_CAST")
-    fun deserialize(element: JsonElement) {
+    internal fun deserialize(element: JsonElement) {
         val clazz = value?.javaClass ?: return
 
         var v: T? = null

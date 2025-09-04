@@ -15,6 +15,15 @@ class FloatSetting(
     @Exclude private val max: Float
 ) : Setting<Float>(name, default) {
 
+    /**
+     * Overwrites the [cute.neko.kawakaze.config.setting.Setting.set] method
+     * to add boundary validation for float value.
+     *
+     * If the provided [value] is outbound the range of [min]..[max],
+     * this method will call [reset] instead of set the [value].
+     *
+     * @param value new float value to set.
+     */
     override fun set(value: Float) {
         if (value !in min..max) {
             reset()
