@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>net.xiaoyu233</groupId>
+  <artifactId>fml-loom</artifactId>
+  <versioning>
+    <latest>1.4.5</latest>
+    <release>1.4.5</release>
+    <versions>
+      <version>0.1.local</version>
+      <version>1.4.5</version>
+    </versions>
+    <lastUpdated>20250301100433</lastUpdated>
+  </versioning>
+</metadata>
