@@ -3,7 +3,9 @@ package cute.neko.kawakaze.config
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import cute.neko.kawakaze.config.gson.serializer.ConfigSerializer
+import cute.neko.kawakaze.config.gson.serializer.ModeSettingSerializer
 import cute.neko.kawakaze.config.gson.strategy.ExcludeStrategy
+import cute.neko.kawakaze.config.setting.types.ModeSetting
 import net.minecraft.Minecraft
 import java.io.File
 
@@ -23,6 +25,7 @@ object ConfigSystem {
         .setPrettyPrinting()
         .addSerializationExclusionStrategy(ExcludeStrategy)
         .registerTypeAdapter(Config::class.java, ConfigSerializer)
+        .registerTypeAdapter(ModeSetting::class.java, ModeSettingSerializer)
         .create()
 
     internal fun register(config: Config) {

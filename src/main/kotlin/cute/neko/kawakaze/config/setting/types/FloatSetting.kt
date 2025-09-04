@@ -3,11 +3,6 @@ package cute.neko.kawakaze.config.setting.types
 import cute.neko.kawakaze.config.gson.strategy.Exclude
 import cute.neko.kawakaze.config.setting.Setting
 
-/**
- * @author yuchenxue
- * @date 2025/09/03
- */
-
 class FloatSetting(
     name: String,
     default: Float,

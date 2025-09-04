@@ -4,12 +4,14 @@ import cute.neko.kawakaze.config.setting.Setting
 
 class ModeSetting(
     name: String,
-    private val modes: Array<String>,
+    internal val modes: Array<String>,
     default: String = modes[0]
 ) : Setting<String>(name, default) {
 
+
+
     /**
-     * Overrides the [cute.neko.kawakaze.config.setting.Setting.set] method
+     * Overrides the [Setting.set] method
      * to ensure the assigned mode is valid.
      *
      * If the provided [value] does not exist in [modes],
