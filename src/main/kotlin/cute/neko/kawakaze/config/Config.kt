@@ -5,6 +5,7 @@ import cute.neko.kawakaze.config.ConfigSystem.gson
 import cute.neko.kawakaze.config.setting.Setting
 import cute.neko.kawakaze.config.setting.types.BooleanSetting
 import cute.neko.kawakaze.config.setting.types.FloatSetting
+import cute.neko.kawakaze.config.setting.types.IntSetting
 import cute.neko.kawakaze.config.setting.types.ModeSetting
 import java.io.FileWriter
 
@@ -16,7 +17,7 @@ import java.io.FileWriter
  * @param id The mod id.
  */
 
-open class Config(
+open class Config @JvmOverloads constructor(
     val name: String,
     id: String = ""
 ) {
@@ -79,15 +80,23 @@ open class Config(
         return setting
     }
 
+    @JvmOverloads
     protected fun setting(
-        name: String, value: Boolean
+        name: String, value: Boolean = false
     ) = register(BooleanSetting(name, value))
 
+    @JvmOverloads
     protected fun setting(
-        name: String, value: Float, min: Float, max: Float
+        name: String, value: Float, min: Float = 0f, max: Float = 10f
     ) = register(FloatSetting(name, value, min, max))
 
+    @JvmOverloads
     protected fun setting(
-        name: String, modes: Array<String>, value: String
+        name: String, modes: Array<String>, value: String = modes[0]
     ) = register(ModeSetting(name, modes, value))
+
+    @JvmOverloads
+    protected fun setting(
+        name: String, value: Int, min: Int = 0, max: Int = 20
+    ) = register(IntSetting(name, value, min, max))
 }

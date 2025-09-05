@@ -2,7 +2,7 @@ package cute.neko.kawakaze.config.setting.types
 
 import cute.neko.kawakaze.config.setting.Setting
 
-class ModeSetting(
+class ModeSetting @JvmOverloads constructor(
     name: String,
     internal val modes: Array<String>,
     default: String = modes[0]
