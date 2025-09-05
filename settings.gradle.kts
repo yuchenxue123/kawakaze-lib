@@ -1,6 +1,5 @@
 pluginManagement {
     repositories {
-        mavenLocal()
         gradlePluginPortal()
         mavenCentral()
 
@@ -10,8 +9,7 @@ pluginManagement {
         }
 
         maven {
-            name = "Project"
-            url = uri("file://${rootDir}/repo")
+            url = uri("https://gitlab.com/mite-mod/repo/raw/main/maven")
         }
     }
 
