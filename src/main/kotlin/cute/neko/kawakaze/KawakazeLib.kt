@@ -5,11 +5,6 @@ import cute.neko.kawakaze.config.ConfigSystem
 import cute.neko.kawakaze.config.ConfigTask
 import net.fabricmc.api.ModInitializer
 
-/**
- * @author yuchenxue
- * @date 2025/09/03
- */
-
 object KawakazeLib : ModInitializer {
 
     override fun onInitialize() {
