@@ -12,7 +12,7 @@ public class MixinMinecraft {
 
     @Inject(method = "startGame", at = @At(value = "TAIL"))
     public void startGame(CallbackInfo ci) {
-        KawakazeLib.INSTANCE.start();
+        KawakazeLib.INSTANCE.initialize();
     }
 
     @Inject(method = "shutdownMinecraftApplet", at = @At(value = "INVOKE", target = "Lnet/minecraft/ILogAgent;logInfo(Ljava/lang/String;)V", shift = At.Shift.AFTER))

@@ -1,12 +1,12 @@
-package cute.neko.kawakaze.registry
+package cute.neko.kawakaze.service.types
 
 import cute.neko.event.EventListener
 import cute.neko.event.handler
 import cute.neko.kawakaze.events.RecipeRegisterEvent
-import cute.neko.kawakaze.registry.recipe.RecipePrepare
+import cute.neko.kawakaze.prepare.Prepares.RECIPE_PREPARES
+import cute.neko.kawakaze.service.Service
 
-object RecipePrepares : EventListener {
-    private val RECIPE_PREPARES = mutableListOf<RecipePrepare>()
+object HandlerService : Service, EventListener {
 
     @Suppress("unused")
     private val handleRecipeRegister = handler<RecipeRegisterEvent> { handler ->
@@ -18,10 +18,11 @@ object RecipePrepares : EventListener {
         }
     }
 
-    /**
-     * Register prepare
-     */
-    fun register(prepare: RecipePrepare) {
-        RECIPE_PREPARES.add(prepare)
+    override fun initialize() {
+        // empty
+    }
+
+    override fun shutdown() {
+        // empty
     }
 }

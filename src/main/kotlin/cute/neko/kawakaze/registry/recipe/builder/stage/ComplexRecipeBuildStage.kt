@@ -1,5 +1,7 @@
 package cute.neko.kawakaze.registry.recipe.builder.stage
 
-interface ComplexRecipeBuildStage : RecipeBuildStage {
-    fun withLowestCrafting() : RecipeBuildStage
+import cute.neko.kawakaze.registry.recipe.Recipe
+
+interface ComplexRecipeBuildStage<R : Recipe> : RecipeBuildStage<R> {
+    fun withLowestCrafting(): RecipeBuildStage<R>
 }

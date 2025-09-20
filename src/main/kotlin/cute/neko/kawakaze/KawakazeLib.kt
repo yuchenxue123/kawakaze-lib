@@ -1,8 +1,6 @@
 package cute.neko.kawakaze
 
-import cute.neko.kawakaze.config.ConfigRegistrar
-import cute.neko.kawakaze.config.ConfigSystem
-import cute.neko.kawakaze.config.ConfigTask
+import cute.neko.kawakaze.service.ServiceManager
 import net.fabricmc.api.ModInitializer
 
 object KawakazeLib : ModInitializer {
@@ -10,15 +8,11 @@ object KawakazeLib : ModInitializer {
     override fun onInitialize() {
     }
 
-    fun start() {
-        ConfigTask.runBeforeTasks(ConfigRegistrar())
-
-        ConfigSystem.loadAll()
-
-        ConfigTask.runAfterTasks()
+    fun initialize() {
+        ServiceManager.initialize()
     }
 
     fun shutdown() {
-        ConfigSystem.saveAll()
+        ServiceManager.shutdown()
     }
 }

@@ -6,10 +6,13 @@ import cute.neko.kawakaze.config.gson.serializer.ConfigSerializer
 import cute.neko.kawakaze.config.gson.serializer.ModeSettingSerializer
 import cute.neko.kawakaze.config.gson.strategy.ExcludeStrategy
 import cute.neko.kawakaze.config.setting.types.ModeSetting
+import cute.neko.kawakaze.prepare.Prepares.CONFIG_PREPARES
+import cute.neko.kawakaze.prepare.types.ConfigPreparable
+import cute.neko.kawakaze.service.Service
 import net.minecraft.Minecraft
 import java.io.File
 
-object ConfigSystem {
+object ConfigSystem : Service {
 
     internal val CONFIG_FOLD = File(
         Minecraft.getMinecraft().mcDataDir, "configs"
@@ -32,11 +35,12 @@ object ConfigSystem {
         configs.add(config)
     }
 
-    internal fun loadAll() {
+    override fun initialize() {
+        CONFIG_PREPARES.forEach(ConfigPreparable::prepare)
         configs.forEach(Config::load)
     }
 
-    internal fun saveAll() {
+    override fun shutdown() {
         configs.forEach(Config::save)
     }
 }
