@@ -1,27 +1,27 @@
 package cute.neko.kawakaze.registry.recipe.types
 
-import cute.neko.kawakaze.events.RecipeRegisterEvent
 import cute.neko.kawakaze.registry.recipe.Recipe
+import cute.neko.kawakaze.registry.recipe.RecipeDelegate
 import cute.neko.kawakaze.registry.recipe.builder.RecipeBuilder
-import cute.neko.kawakaze.prepare.types.RecipePreparable
 import net.minecraft.ItemStack
+import net.xiaoyu233.fml.reload.event.RecipeRegistryEvent
 
 class ShapelessRecipe(
     output: ItemStack,
     objects: Array<Any>,
     lowestCrafting: Boolean
 ) : Recipe(output, objects, lowestCrafting) {
-    override fun register(handler: RecipeRegisterEvent) {
+    override fun register(event: RecipeRegistryEvent) {
         if (registered) return
-        handler.shapeless.invoke(output, lowestCrafting, objects)
+        event.registerShapelessRecipe(output, lowestCrafting, objects)
         registered = true
     }
 
     /**
      * @return [RecipeBuilder.ShapelessRecipeBuilder] just kid
      */
-    fun applyTo(prepare: RecipePreparable): RecipeBuilder.ShapelessRecipeBuilder {
-        prepare.recipe(this)
-        return RecipeBuilder.Companion.creator().shapeless()
+    fun delegate(): RecipeBuilder.ShapelessRecipeBuilder {
+        RecipeDelegate.delegate(this)
+        return RecipeBuilder.creator().shapeless()
     }
 }

@@ -1,15 +1,13 @@
 package cute.neko.kawakaze.service
 
 import cute.neko.kawakaze.config.ConfigSystem
-import cute.neko.kawakaze.service.types.HandlerService
 
 object ServiceManager : Service {
     private val services = mutableListOf<Service>()
 
     init {
         register(
-            ConfigSystem,
-            HandlerService
+            ConfigSystem
         )
     }
 

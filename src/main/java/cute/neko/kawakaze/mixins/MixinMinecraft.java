@@ -1,6 +1,9 @@
 package cute.neko.kawakaze.mixins;
 
+import cute.neko.event.EventManager;
 import cute.neko.kawakaze.KawakazeLib;
+import cute.neko.kawakaze.events.MinecraftInitializeEvent;
+import cute.neko.kawakaze.events.MinecraftShutdownEvent;
 import net.minecraft.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,11 +15,11 @@ public class MixinMinecraft {
 
     @Inject(method = "startGame", at = @At(value = "TAIL"))
     public void startGame(CallbackInfo ci) {
-        KawakazeLib.INSTANCE.initialize();
+        EventManager.INSTANCE.callEvent(MinecraftInitializeEvent.INSTANCE);
     }
 
     @Inject(method = "shutdownMinecraftApplet", at = @At(value = "INVOKE", target = "Lnet/minecraft/ILogAgent;logInfo(Ljava/lang/String;)V", shift = At.Shift.AFTER))
     public void shutdown(CallbackInfo ci) {
-        KawakazeLib.INSTANCE.shutdown();
+        EventManager.INSTANCE.callEvent(MinecraftShutdownEvent.INSTANCE);
     }
 }

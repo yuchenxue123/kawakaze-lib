@@ -1,7 +1,7 @@
 package cute.neko.kawakaze.registry.recipe
 
-import cute.neko.kawakaze.events.RecipeRegisterEvent
 import net.minecraft.ItemStack
+import net.xiaoyu233.fml.reload.event.RecipeRegistryEvent
 
 abstract class Recipe(
     protected val output: ItemStack,
@@ -10,5 +10,5 @@ abstract class Recipe(
 ) {
     protected var registered = false
 
-    abstract fun register(handler: RecipeRegisterEvent)
+    abstract fun register(event: RecipeRegistryEvent)
 }
