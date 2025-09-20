@@ -1,9 +1,8 @@
 package cute.neko.kawakaze
 
 import com.google.common.eventbus.Subscribe
+import cute.neko.kawakaze.registry.recipe.RecipeDelegate
 import cute.neko.kawakaze.service.Service
-import net.minecraft.Item
-import net.minecraft.ItemStack
 import net.xiaoyu233.fml.reload.event.MITEEvents
 import net.xiaoyu233.fml.reload.event.RecipeRegistryEvent
 
@@ -13,11 +12,7 @@ object EventHandler : Service {
     @Suppress("unused")
     @Subscribe
     private fun onRecipeRegister(event: RecipeRegistryEvent) {
-        event.registerShapelessRecipe(
-            ItemStack(Item.swordIron),
-            true,
-            Item.stick
-        )
+        RecipeDelegate.register(event)
     }
 
     override fun initialize() {
