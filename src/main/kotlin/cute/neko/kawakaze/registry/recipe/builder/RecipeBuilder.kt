@@ -21,11 +21,11 @@ sealed class RecipeBuilder {
     }
 
     class RecipeCreator {
-        fun shaped(): ShapedRecipeBuilder {
+        fun shaped(): ShapedBuilder {
             return ShapedRecipeBuilder()
         }
 
-        fun shapeless(): ShapelessRecipeBuilder {
+        fun shapeless(): ShapelessBuilder {
             return ShapelessRecipeBuilder()
         }
     }

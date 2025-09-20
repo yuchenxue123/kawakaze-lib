@@ -9,10 +9,10 @@ import net.xiaoyu233.fml.reload.event.MITEEvents
 import net.xiaoyu233.fml.reload.event.RecipeRegistryEvent
 
 @Suppress("UnstableApiUsage")
-object EventHandler : Service {
+object EventHandler : Service{
 
-    @Suppress("unused")
     @Subscribe
+    @Suppress("unused")
     private fun onRecipeRegister(event: RecipeRegistryEvent) {
         Prepares.RECIPE_PREPARES.forEach(RecipePreparable::prepare)
         RecipeDelegate.register(event)
