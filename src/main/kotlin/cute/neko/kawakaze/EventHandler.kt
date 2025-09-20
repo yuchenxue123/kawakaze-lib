@@ -9,7 +9,7 @@ import net.xiaoyu233.fml.reload.event.MITEEvents
 import net.xiaoyu233.fml.reload.event.RecipeRegistryEvent
 
 @Suppress("UnstableApiUsage")
-object EventHandler : Service{
+object EventHandler : Service {
 
     @Subscribe
     @Suppress("unused")

@@ -1,6 +1,5 @@
 package cute.neko.kawakaze.registry.recipe
 
-import cute.neko.kawakaze.events.RecipeRegisterEvent
 import net.xiaoyu233.fml.reload.event.RecipeRegistryEvent
 
 object RecipeDelegate {
