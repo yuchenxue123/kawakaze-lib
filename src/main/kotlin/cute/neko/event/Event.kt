@@ -4,7 +4,7 @@ interface Event {
     /* This is a marker interface, no properties or methods are needed here. */
 }
 
-open class CancellableEvent : Event {
+abstract class CancellableEvent : Event {
 
     /**
      * Indicates whether the event has been cancelled.

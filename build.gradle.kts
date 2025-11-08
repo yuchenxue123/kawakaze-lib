@@ -63,6 +63,8 @@ dependencies {
     implementation(files(loom.fml.toPath()))
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version")
+
+    testImplementation(kotlin("test"))
 }
 
 val properties = mapOf(

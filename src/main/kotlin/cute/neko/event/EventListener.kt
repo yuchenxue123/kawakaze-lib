@@ -21,23 +21,6 @@ interface EventListener {
      * Unregisters this event listener from the EventManager.
      */
     fun unregister() {
-        EventManager.unregisterEventHandler(this)
+        EventManager.unregisterEventListener(this)
     }
-}
-
-typealias Handler<T> = (event: T) -> Unit
-
-class EventHook<T : Event>(
-    val handlerClass: EventListener,
-    val handler: Handler<T>,
-    val always: Boolean,
-    val priority: EventPriority,
-)
-
-inline fun <reified T: Event> EventListener.handler(
-    always: Boolean = false,
-    priority: EventPriority = DefaultPriority.DEFAULT,
-    noinline handler: Handler<T>
-) {
-    EventManager.registerEventHook(T::class.java, EventHook(this, handler, always, priority))
 }

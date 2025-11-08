@@ -5,6 +5,7 @@ import cute.neko.kawakaze.prepare.Prepares
 import cute.neko.kawakaze.prepare.types.RecipePreparable
 import cute.neko.kawakaze.registry.recipe.RecipeDelegate
 import cute.neko.kawakaze.service.Service
+import net.xiaoyu233.fml.reload.event.ItemRegistryEvent
 import net.xiaoyu233.fml.reload.event.MITEEvents
 import net.xiaoyu233.fml.reload.event.RecipeRegistryEvent
 
@@ -16,6 +17,12 @@ object EventHandler : Service {
     private fun onRecipeRegister(event: RecipeRegistryEvent) {
         Prepares.RECIPE_PREPARES.forEach(RecipePreparable::prepare)
         RecipeDelegate.register(event)
+    }
+
+    @Subscribe
+    @Suppress("unused")
+    private fun onItemRegister(event: ItemRegistryEvent) {
+
     }
 
     override fun initialize() {
