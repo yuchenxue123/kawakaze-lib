@@ -15,11 +15,11 @@ public class MixinMinecraft {
 
     @Inject(method = "startGame", at = @At(value = "TAIL"))
     public void startGame(CallbackInfo ci) {
-        EventManager.INSTANCE.callEvent(MinecraftInitializeEvent.INSTANCE);
+        EventManager.callEvent(MinecraftInitializeEvent.INSTANCE);
     }
 
     @Inject(method = "shutdownMinecraftApplet", at = @At(value = "INVOKE", target = "Lnet/minecraft/ILogAgent;logInfo(Ljava/lang/String;)V", shift = At.Shift.AFTER))
     public void shutdown(CallbackInfo ci) {
-        EventManager.INSTANCE.callEvent(MinecraftShutdownEvent.INSTANCE);
+        EventManager.callEvent(MinecraftShutdownEvent.INSTANCE);
     }
 }
