@@ -1,5 +1,4 @@
 import org.gradle.kotlin.dsl.accessors.runtime.addDependencyTo
-import java.util.*
 
 plugins {
     kotlin("jvm")
@@ -118,42 +117,3 @@ kotlin {
         jvmToolchain(17)
     }
 }
-
-// publish to gitlab, you can delete this.
-
-val config = Properties().apply {
-    file("config.properties").inputStream().use { load(it) }
-}
-
-val maven_name: String by project
-val maven_group: String by project
-
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            from(components["java"])
-
-            groupId = maven_group
-            artifactId = maven_name
-            version = mod_version
-        }
-    }
-
-    repositories {
-        maven {
-            url = uri("https://gitlab.com/api/v4/projects/74192719/packages/maven")
-
-            val private_token: String by config
-
-            credentials(HttpHeaderCredentials::class) {
-                name = "Private-Token"
-                value = private_token
-            }
-
-            authentication {
-                create<HttpHeaderAuthentication>("header")
-            }
-        }
-    }
-}
-

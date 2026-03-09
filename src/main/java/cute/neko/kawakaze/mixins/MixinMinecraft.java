@@ -1,7 +1,6 @@
 package cute.neko.kawakaze.mixins;
 
 import cute.neko.event.EventManager;
-import cute.neko.kawakaze.KawakazeLib;
 import cute.neko.kawakaze.events.MinecraftInitializeEvent;
 import cute.neko.kawakaze.events.MinecraftShutdownEvent;
 import net.minecraft.Minecraft;

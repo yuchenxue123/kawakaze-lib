@@ -21,3 +21,5 @@ pluginManagement {
         id("fml-loom") version loom_version
     }
 }
+
+rootProject.name = "kawakaze-lib"

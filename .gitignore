@@ -28,6 +28,3 @@ run/
 
 # kotlin
 .kotlin/
-
-# other
-config.properties
