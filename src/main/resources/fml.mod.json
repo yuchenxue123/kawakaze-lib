@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "id": "${id}",
-  "name": "${name}",
+  "id": "kawakaze",
+  "name": "Kawakaze Lib",
   "version": "${version}",
-  "description": "${description}",
-  "icon": "${icon}",
+  "description": "A lib mod",
+  "icon": "assets/kawakazelib/icon.png",
   "authors": [
     "yuchenxue"
   ],
   "depends": {
     "fishmodloader": ">=3.4.1",
-    "kotlin-language": ">=1.0.1"
+    "fish-language-kotlin": ">=1.1.4.2310"
   },
   "environment": "*",
   "entrypoints": {
@@ -24,5 +24,5 @@
   "mixins": [
     "kawakaze.mixins.json"
   ],
-  "accessWidener": "${widener}"
+  "accessWidener": "kawakaze.accesswidener"
 }
