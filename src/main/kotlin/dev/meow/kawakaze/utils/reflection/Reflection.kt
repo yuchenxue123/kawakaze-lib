@@ -8,7 +8,6 @@ import java.lang.reflect.Modifier
 val scan: ScanResult by lazy {
     ClassGraph()
         .enableClassInfo()
-        .enableFieldInfo()
         .enableAnnotationInfo()
         .rejectPackages(
             "net.minecraft",
@@ -21,30 +20,17 @@ val scan: ScanResult by lazy {
         .scan()
 }
 
-inline fun <reified T : Any> getInstances(noinline filter: (info: ClassInfo) -> Boolean = { true }): List<T> {
-    if (scan.isClosed) return emptyList()
-
-    val clazz = T::class.java
-
-    val instances = when {
-        clazz.isInterface -> scan.getClassesImplementing(clazz)
-        Modifier.isAbstract(clazz.modifiers) -> scan.getSubclasses(clazz)
-        else -> throw NoImplementException("$clazz is not an interface or abstract class.")
-    }
-
-    return instances.filter(filter)
-        .mapNotNull { createInstance<T>(Class.forName(it.name)) }
-}
-
-fun getInstances(annotation: Class<out Annotation>, filter: (info: ClassInfo) -> Boolean = { true }): List<Any> {
-    if (scan.isClosed) return emptyList()
+fun getInstances(annotation: Class<out Annotation>, filter: (info: ClassInfo) -> Boolean = { true }): Map<Any, ClassInfo> {
+    if (scan.isClosed) return emptyMap()
 
     val instances = scan.getClassesWithAnnotation(annotation)
 
     return instances.filter(filter)
-        .mapNotNull { createInstance(Class.forName(it.name)) }
+        .mapNotNull { info ->
+            val instance = createInstance<Any>(Class.forName(info.name))
+            instance?.let { it to info }
+        }.toMap()
 }
-
 
 val Class<*>.isObject: Boolean
     get() = declaredFields.any {

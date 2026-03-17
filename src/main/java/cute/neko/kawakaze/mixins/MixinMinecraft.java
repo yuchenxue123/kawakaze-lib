@@ -23,5 +23,7 @@ public class MixinMinecraft {
     @Inject(method = "shutdownMinecraftApplet", at = @At(value = "INVOKE", target = "Lnet/minecraft/ILogAgent;logInfo(Ljava/lang/String;)V", shift = At.Shift.AFTER))
     public void shutdown(CallbackInfo ci) {
         EventManager.callEvent(MinecraftShutdownEvent.INSTANCE);
+
+        ConfigSystem.INSTANCE.saveAll();
     }
 }
